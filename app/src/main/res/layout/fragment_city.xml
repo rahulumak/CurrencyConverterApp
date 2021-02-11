@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+
+        <variable
+            name="viewModel"
+            type="com.rahulumak.mobiquity.mobiquityassignment.ui.city.CityViewModel" />
+
+        <variable
+            name="view"
+            type="android.view.View" />
+
+        <variable
+            name="city"
+            type="com.rahulumak.mobiquity.mobiquityassignment.model.City" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/colorSurface"
+        android:fitsSystemWindows="false"
+        tools:context=".ui.help.HelpFragment"
+        tools:ignore="MergeRootFrame">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:background="?attr/colorSurface"
+            android:fitsSystemWindows="true"
+            android:stateListAnimator="@animator/show_toolbar"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_gravity="center"
+                android:background="@color/md_blue_800"
+                app:contentInsetStartWithNavigation="0dp"
+                app:navigationIcon="@drawable/ic_detail_back"
+                app:title="@{city.name}"
+                app:titleTextColor="@color/white" />
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/plant_detail_scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/md_blue_grey_500"
+            android:clipToPadding="false"
+            android:paddingBottom="30dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp">
+
+                <ProgressBar
+                    android:id="@+id/loading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewModel.isLoading()? view.VISIBLE : view.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txtTodaysDate"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date"
+                    android:textColor="@color/white"
+                    android:textStyle="italic|bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    bind:toSmallDate="@{viewModel.weatherModel.dt}" />
+
+                <ImageView
+                    android:id="@+id/imgForecast"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:adjustViewBounds="true"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtTodaysDate"
+                    bind:loadWeatherIcon="@{viewModel.weatherModel}" />
+
+                <TextView
+                    android:id="@+id/txtTemperature"
+                    style="@style/TextAppearance.AppCompat.Headline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10C"
+                    android:textColor="@color/white"
+                    android:textSize="50sp"
+                    android:textStyle="italic|bold"
+                    app:layout_constraintLeft_toRightOf="@+id/imgForecast"
+                    app:layout_constraintTop_toBottomOf="@+id/txtTodaysDate"
+                    bind:bindDoubleText="@{viewModel.weatherModel.main.temp}" />
+
+                <TextView
+                    android:id="@+id/txtWeather"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Haze"
+                    android:textColor="@color/white"
+                    android:textStyle="italic|bold"
+                    app:layout_constraintLeft_toLeftOf="@+id/txtTemperature"
+
+                    app:layout_constraintTop_toBottomOf="@+id/txtTemperature"
+                    bind:bindWeatherText="@{viewModel.weatherModel}" />
+
+                <TextView
+                    android:id="@+id/txtHumidityText"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="Humidity"
+                    android:textColor="@color/black"
+                    android:textStyle="normal"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtWeather" />
+
+                <TextView
+                    android:id="@+id/txtHumidity"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="33%"
+                    android:textColor="@color/white"
+                    android:textStyle="italic|bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="@+id/txtHumidityText"
+                    app:layout_constraintTop_toBottomOf="@+id/txtHumidityText"
+                    bind:humidityText="@{viewModel.weatherModel.main.humidity}" />
+
+                <TextView
+                    android:id="@+id/txtWindText"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="Wind"
+                    android:textColor="@color/black"
+                    android:textStyle="normal"
+                    android:layout_marginLeft="30dp"
+                    app:layout_constraintLeft_toRightOf="@+id/txtHumidityText"
+                    app:layout_constraintTop_toBottomOf="@+id/txtWeather" />
+
+                <TextView
+                    android:id="@+id/txtWind"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12 km/h"
+                    android:textColor="@color/white"
+                    android:textStyle="italic|bold"
+                    android:layout_marginLeft="30dp"
+                    app:layout_constraintLeft_toRightOf="@+id/txtHumidityText"
+                    app:layout_constraintRight_toRightOf="@+id/txtWindText"
+                    app:layout_constraintTop_toBottomOf="@+id/txtWindText"
+                    bind:windText="@{viewModel.weatherModel.wind.speed}" />
+
+                <TextView
+                    android:id="@+id/txtMinTempText"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="Min"
+                    android:textColor="@color/black"
+                    android:textStyle="normal"
+                    android:layout_marginLeft="30dp"
+                    app:layout_constraintLeft_toRightOf="@+id/txtWindText"
+                    app:layout_constraintTop_toBottomOf="@+id/txtWeather" />
+
+                <TextView
+                    android:id="@+id/txtMinTemp"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12oC"
+                    android:textColor="@color/white"
+                    android:textStyle="italic|bold"
+                    android:layout_marginLeft="30dp"
+                    app:layout_constraintLeft_toRightOf="@+id/txtWind"
+                    app:layout_constraintRight_toRightOf="@+id/txtMinTempText"
+                    app:layout_constraintTop_toBottomOf="@+id/txtMinTempText"
+                    bind:bindDoubleText="@{viewModel.weatherModel.main.tempMin}" />
+                <TextView
+                    android:id="@+id/txtMaxTempText"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="Max"
+                    android:textColor="@color/black"
+                    android:textStyle="normal"
+                    android:layout_marginLeft="30dp"
+                    app:layout_constraintLeft_toRightOf="@+id/txtMinTemp"
+                    app:layout_constraintTop_toBottomOf="@+id/txtWeather" />
+
+                <TextView
+                    android:id="@+id/txtMaxTemp"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12oC"
+                    android:textColor="@color/white"
+                    android:textStyle="italic|bold"
+                    android:layout_marginLeft="30dp"
+                    app:layout_constraintLeft_toRightOf="@+id/txtMinTemp"
+                    app:layout_constraintRight_toRightOf="@+id/txtMaxTempText"
+                    app:layout_constraintTop_toBottomOf="@+id/txtMaxTempText"
+                    bind:bindDoubleText="@{viewModel.weatherModel.main.tempMax}" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

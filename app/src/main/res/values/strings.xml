@@ -1,0 +1,15 @@
+<resources>
+<!--    configs-->
+    <string name="map_api_key">AIzaSyAKOSTLE3LtjJINhHfwIl7m_EE4UR0PkHI</string>
+    <string name="app_name">Mobiquity Assignment</string>
+    <string name="title_home">Home</string>
+    <string name="title_help">Help</string>
+    <string name="title_setting">Setting</string>
+    <string name="title_city">City</string>
+    <string name="title_map">Select City</string>
+    <string name="add_city">Add City</string>
+    <string name="your_bookmark_city_s">Your Bookmark City(s)</string>
+    <string name="degree_celsius">℃</string>
+    <string name="degree">℉</string>
+    <string name="degree_dot">°</string>
+</resources>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.rahulumak.mobiquity.mobiquityassignment.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_map"
+            app:destination="@id/navigation_map" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_city"
+            app:destination="@id/navigation_city" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_help"
+        android:name="com.rahulumak.mobiquity.mobiquityassignment.ui.help.HelpFragment"
+        android:label="@string/title_help"
+        tools:layout="@layout/fragment_help" />
+
+    <fragment
+        android:id="@+id/navigation_setting"
+        android:name="com.rahulumak.mobiquity.mobiquityassignment.ui.setting.SettingFragment"
+        android:label="@string/title_setting"
+        tools:layout="@layout/fragment_setting" />
+    <fragment
+        android:id="@+id/navigation_city"
+        android:name="com.rahulumak.mobiquity.mobiquityassignment.ui.city.CityFragment"
+        android:label="@string/title_city"
+        tools:layout="@layout/fragment_city">
+        <argument
+            android:name="city"
+            app:argType="com.rahulumak.mobiquity.mobiquityassignment.model.City"/>
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_map"
+        android:name="com.rahulumak.mobiquity.mobiquityassignment.ui.map.MapFragment"
+        android:label="@string/title_map"
+        tools:layout="@layout/fragment_map" />
+</navigation>
