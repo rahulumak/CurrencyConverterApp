@@ -11,12 +11,12 @@ object Converters {
     }
 
     private fun getDateSmallFormatter(): SimpleDateFormat {
-        return SimpleDateFormat("EEE, d MMM yyyy", Locale.getDefault());
+        return SimpleDateFormat("EEEE, d MMM yyyy", Locale.getDefault());
     }
 
     fun toSmallDate(date: Long): String {
         val formattedDate = Date(date * 1000L)
-        return getDateSmallFormatter().format(formattedDate!!)
+        return getDateSmallFormatter().format(formattedDate)
     }
 
     fun <T> MutableLiveData<T>.modifyValue(transform: T.() -> T) {

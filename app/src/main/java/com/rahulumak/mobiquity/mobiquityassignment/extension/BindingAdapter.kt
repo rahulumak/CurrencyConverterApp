@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.rahulumak.mobiquity.mobiquityassignment.R
 import com.rahulumak.mobiquity.mobiquityassignment.model.WeatherModel
+import com.rahulumak.mobiquity.mobiquityassignment.ui.city.DayForecast
+import com.rahulumak.mobiquity.mobiquityassignment.ui.city.ForecastingListAdapter
+import kotlin.math.ceil
 
 
 @BindingAdapter("bind:loadUrl")
@@ -58,7 +61,7 @@ fun bindIntText(view: TextView, value:Int?) {
 @BindingAdapter("bind:bindDoubleText")
 fun bindDoubleText(view: TextView, value:Double?) {
     value?.apply {
-        view.text =value.toString()+view.context.resources.getString(R.string.degree_celsius)
+        view.text =(ceil(value).toInt()).toString()+view.context.resources.getString(R.string.degree_celsius)
     }
 
 }
@@ -82,9 +85,21 @@ fun txtWindText(view: TextView, value:Double) {
     view.text ="${value} km/h"
 
 }
-//@BindingAdapter("bind:items")
-//fun setItems(view: RecyclerView, items: List<Matches.Invitation>?) {
-//    val invitationsAdapter = view.adapter as InvitationsAdapter
-//    invitationsAdapter.itemList = items ?: emptyList()
-//    invitationsAdapter.notifyDataSetChanged()
-//}
+@BindingAdapter("bind:items")
+fun setItems(view: RecyclerView, items: List<DayForecast>?) {
+    items?.apply {
+        val invitationsAdapter = view.adapter as ForecastingListAdapter
+        invitationsAdapter.itemList = items
+        invitationsAdapter.notifyDataSetChanged()
+    }
+}
+
+@BindingAdapter("bind:loadWeatherIcon")
+fun loadWeatherIcon(view: ImageView, icon: String?) {
+    icon?.apply {
+        Glide.with(view)
+            .load("http://openweathermap.org/img/wn/$icon@2x.png")
+            .circleCrop()
+            .into(view)
+    }
+}

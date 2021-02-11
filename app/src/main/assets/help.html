@@ -5,12 +5,54 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Help</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+body {
+  background-color: lightblue;
+}
+
+h1,h3{
+  color: white;
+  font-size: 26px;
+text-decoration: underline ;
+}
+span{
+ 
+text-decoration: underline ;}
+
+h4{
+color: white;
+  font-size: 26px;
+}
+
+p ,ul{
+   font-size: 22px;
+   }
+
+p {
+  font-family: verdana;
+  font-size: 20px;
+}
+
+.parent > ul {
+  display: inline-block;
+}
+
+  </style>
 </head>
 <body>
+<div class="one">
   <h1>Welcome to Forecasting</h1>
   <p>This app keeps you updated with daily weather forecasting details for selected locations.</p>
+
+</div>
+  
+  <div>
   <h3>How to use?</h3>
-  <h4>1.&nbsp;Add a bookmark</h4>
+   </div>
+    
+  <div class="parent">
+  <h4>1.&nbsp;<span>Add a bookmark</span></h4>
   <ul>
     <li>Go to home screen and click on add button at bottom right corner.</li>
     <li>Please give location permission to get your current location.</li>
@@ -18,15 +60,22 @@
     <li>Now click on done button at bottom right corner.</li>
     <li>The added location will show on home screen city list.</li>
   </ul>
-  <h4>2.&nbsp;Check weather</h4>
+  </div>
+
+   <div class="parent">
+  <h4>2.&nbsp;<span>Check weather</span></h4>
   <ul>
     <li>Go to home screen and select city.</li>
     <li>It will navigate to weather details screen. Here you can see all details</li>
   </ul>
-  <h4>3.&nbsp;Remove city from bookmark list</h4>
+ </div>
+    
+   <div class="parent">
+  <h4>3.&nbsp;<span>Remove city from bookmark list</span></h4>
   <ul>
     <li>Go to home screen and click on delete icon of city which you want to delete.</li>
     <li>Then confirm to delete.</li>
   </ul>
+  </div>
 </body>
 </html>

@@ -91,7 +91,6 @@ class MapFragment() : Fragment(), OnMapReadyCallback {
                 ),
                 localPermissionRequestCode
             )
-            return
         } else {
             googleMap.isMyLocationEnabled = true
             getCurrentLocation()
@@ -117,10 +116,10 @@ class MapFragment() : Fragment(), OnMapReadyCallback {
 
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == localPermissionRequestCode) {
-            var gotPermission = true
+            var gotPermission = false
             for (grantResult in grantResults) {
-                if (grantResult != PackageManager.PERMISSION_GRANTED) {
-                    gotPermission = false
+                if (grantResult == PackageManager.PERMISSION_GRANTED) {
+                    gotPermission = true
                     break
                 }
             }
@@ -133,6 +132,7 @@ class MapFragment() : Fragment(), OnMapReadyCallback {
                 ).show()
             } else {
                 googleMap.isMyLocationEnabled = true
+                getCurrentLocation()
             }
         }
     }

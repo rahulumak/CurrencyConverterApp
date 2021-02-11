@@ -50,13 +50,13 @@ data class ForecastModel(
         @SerializedName("clouds")
         val clouds: Clouds,
         @SerializedName("dt")
-        val dt: Int,
+        val dt: Long,
         @SerializedName("dt_txt")
         val dtTxt: String,
         @SerializedName("main")
         val main: Main,
         @SerializedName("pop")
-        val pop: Int,
+        val pop: Double,
         @SerializedName("sys")
         val sys: Sys,
         @SerializedName("visibility")

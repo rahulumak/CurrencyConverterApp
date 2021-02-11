@@ -1,22 +1,14 @@
 package com.rahulumak.mobiquity.mobiquityassignment.ui.city
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.lifecycle.Observer
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import com.rahulumak.mobiquity.mobiquityassignment.R
 import com.rahulumak.mobiquity.mobiquityassignment.config.ProjectConfig
 import com.rahulumak.mobiquity.mobiquityassignment.databinding.FragmentCityBinding
-
 import com.rahulumak.mobiquity.mobiquityassignment.model.City
-import com.rahulumak.mobiquity.mobiquityassignment.model.WeatherModel
-import com.rahulumak.mobiquity.mobiquityassignment.ui.home.HomeViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
@@ -39,10 +31,18 @@ class CityFragment : Fragment() {
             lifecycleOwner = this@CityFragment
             city = mCity
             viewModel = cityViewModel
+            adapter = ForecastingListAdapter()
         }
         root = binding.root
 
         cityViewModel.getWeatherData(
+            mCity.latitude!!,
+            mCity.longitude!!,
+            ProjectConfig.API_KEY,
+            ProjectConfig.CONVERSION_UNITS
+        )
+
+        cityViewModel.getForecastList(
             mCity.latitude!!,
             mCity.longitude!!,
             ProjectConfig.API_KEY,
