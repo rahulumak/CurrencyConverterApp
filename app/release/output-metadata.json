@@ -4,8 +4,8 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.rahulumak.mobiquity.mobiquityassignment",
-  "variantName": "processReleaseResources",
+  "applicationId": "com.rahulumak.paypay.currencyconverterapp",
+  "variantName": "release",
   "elements": [
     {
       "type": "SINGLE",

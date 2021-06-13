@@ -1,7 +1,7 @@
 <resources>
 <!--    configs-->
     <string name="map_api_key">AIzaSyAKOSTLE3LtjJINhHfwIl7m_EE4UR0PkHI</string>
-    <string name="app_name">Mobiquity Assignment</string>
+    <string name="app_name">Currency Converter</string>
     <string name="title_home">Home</string>
     <string name="title_help">Help</string>
     <string name="title_setting">Setting</string>
@@ -12,4 +12,9 @@
     <string name="degree_celsius">℃</string>
     <string name="degree">℉</string>
     <string name="degree_dot">°</string>
+    <string name="convert">Convert</string>
+    <string name="txt_enter_value">Please Enter Some Value!!!</string>
+    <string name="currency_rates_for_usd">Currency Rates (for USD)</string>
+    <string name="enter_amount_here_in_usd">Enter Amount Here In USD ($)</string>
+
 </resources>

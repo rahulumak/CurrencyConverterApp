@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "MobiquityAssigmnent"
+rootProject.name = "CurrencyConverter"
